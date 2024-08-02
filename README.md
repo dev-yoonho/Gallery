@@ -59,17 +59,35 @@
 
 ## 클래스 다이어그램 변화
 
-### 초기 클래스 다이어그램
-- `VideoUi` 클래스는 싱글톤 패턴을 사용하여 객체를 생성
-- `VideoDaoImpl` 클래스는 `VideoDao` 인터페이스를 구현하고 있었음
+### 초기 -> 중기
 
-### 개선된 클래스 다이어그램
-- `VideoUi` 클래스는 생성자 주입 방식으로 `VideoDao` 객체를 받도록 개선
-- `VideoDaoImpl` 클래스는 명시적으로 `VideoDao` 인터페이스를 구현한다고 표시
+#### 변화된 점
+1. **VideoDao 인터페이스 변경**:
+   - `selectVideo()`와 `selectVideoByNo(int no)` 메서드가 `getAllVideos()`와 `getVideoByNo(int no)`로 변경되어 더 직관적인 메서드 명을 사용하게 됨.
+2. **VideoUi 클래스 변경**:
+   - 싱글톤 패턴 제거: `VideoUi` 클래스에서 `getInstance()` 메서드를 사용한 싱글톤 패턴이 제거되고, 생성자 주입 방식으로 `VideoDao` 객체를 받도록 변경.
+3. **VideoReviewDao 인터페이스 변경**:
+   - `inserReview(videoReview: VideoReview): int`와 `selectReview(videoNo: int): List<VideoReview>` 메서드가 각각 `insertReview(videoReview: VideoReview): int`와 `getReviewsByVideoNo(videoNo: int): List<VideoReview>`로 변경되어 명명 규칙이 개선됨.
+4. **VideoReviewDaoImpl 클래스 변경**:
+   - `VideoReviewDao` 인터페이스를 명시적으로 구현하도록 변경되어 코드의 가독성과 유지보수성이 향상됨.
+5. **기타**:
+   - 클래스와 인터페이스 간의 관계가 명확하게 정의되고, 전반적인 코드 구조가 더 일관성 있게 정리됨.
 
-### 변화 및 개선된 점 요약
-- **싱글톤 패턴 제거**: `VideoUi` 클래스에서 싱글톤 패턴을 제거하고, 의존성 주입을 통해 객체를 생성하도록 변경하여 유연성을 높임.
-- **명시적 인터페이스 구현**: `VideoDaoImpl` 클래스가 `VideoDao` 인터페이스를 명시적으로 구현하도록 수정하여 코드의 가독성과 유지보수성을 향상.
+### 중기 -> 말기
+
+#### 변화된 점
+1. **UserDao 인터페이스 추가**:
+   - 회원 정보를 관리하는 `UserDao` 인터페이스가 추가되어, `saveUsersToFile()`, `loadUsersFromFile()`, `addUser(User user)`, `getUserById(String id)`, `getAllUsers()` 메서드를 정의.
+2. **User 클래스 추가**:
+   - 회원 정보를 담는 `User` 클래스가 추가되어, 아이디, 이름, 비밀번호, 이메일, 추가 정보 필드를 포함한 객체 구조를 정의.
+3. **UserDaoImpl 클래스 추가**:
+   - `UserDao` 인터페이스를 구현하는 `UserDaoImpl` 클래스가 추가되어, 사용자 정보를 파일에 저장하고 로드하는 기능을 구현.
+4. **UserUi 클래스 추가**:
+   - 회원 가입, 로그인, 로그아웃, 사용자 목록 표시 등의 기능을 제공하는 `UserUi` 클래스가 추가됨.
+5. **MainUi 클래스 변경**:
+   - `MainUi` 클래스에서 `UserUi` 객체를 관리하도록 변경되어, 사용자 인터페이스 관련 기능이 통합됨.
+6. **기타**:
+   - 클래스와 인터페이스 간의 관계가 더 복잡해지고 명확해짐으로써, 기능이 확장되고 유지보수성이 향상됨.
 
 ## 코드 변화
 
