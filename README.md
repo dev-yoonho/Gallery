@@ -58,6 +58,12 @@
     - 회원 가입 및 로그인
 
 ## 클래스 다이어그램 변화
+**초기**
+![초기 클래스 다이어그램](https://github.com/user-attachments/assets/2aa554f3-202a-4c26-a9af-7903bfb84e12)
+**중기** 
+![중기 클래스 다이어그램](https://github.com/user-attachments/assets/503e7648-fd95-4d9b-a6ab-e94e8ec03262)
+**말기**
+![말기 클래스 다이어그램](https://github.com/user-attachments/assets/b174944c-486d-4a49-81aa-c5517828be5a)
 
 ### 초기 -> 중기
 
